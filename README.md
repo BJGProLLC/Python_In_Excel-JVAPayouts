@@ -15,3 +15,6 @@ A basic workflow design like this can easily be used to automate repeatable proc
 Happy to get feedback from the community on suggestions/improvements.
 
 Happy Analyzing!
+
+### Python Developer
+Bernardo Garcia Jr
