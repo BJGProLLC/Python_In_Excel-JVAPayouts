@@ -16,5 +16,13 @@ Happy to get feedback from the community on suggestions/improvements.
 
 Happy Analyzing!
 
+_See the readme file in the main branch for updated instructions and information._
+## Instructions
+This repository has branches for each of logic sequences in this simply payout model. You can use the branch pop up menu in github to switch to a specific branch and take a look at the python code at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
+
+## Branches
+The branches are structured to correspond to the logic sequences in the payout model. The naming convention is `Dataset#_Logic#`. As an example, the branch named `02_Dataframes` corresponds to the second second sequence in the logic sequence, e.g., the second sequnece in Python would be to load the dataset(s).  
+
+
 ### Python Developer
 Bernardo Garcia Jr
