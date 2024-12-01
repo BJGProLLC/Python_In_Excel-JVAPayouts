@@ -1,0 +1,4 @@
+#calculating After Burden Taxes 
+revenues['AfterBurdenTaxes'] = revenues['8/8 Tax']*revenues['Relative_NRI']
+
+revenues.head()
