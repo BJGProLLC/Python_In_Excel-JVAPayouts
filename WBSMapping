@@ -1,0 +1,26 @@
+# Step 1: Extract the WBS Name definition part from the WBS Element in the fact table
+JIB['WBS Def Classification'] = JIB['WBS Element'].str.split('.').str[1]  # Extracts the middle part (e.g., "07")
+
+# Step 2: Perform the merge using the extracted value and the required columns from the support table
+JIB= pd.merge(
+    JIB, WBSMapping[['WBS Name definition', 'Description', 'Additional Capex Mapping']],  # Include required columns
+    left_on='WBS Def Classification',  # Match extracted part from the fact table
+    right_on='WBS Name definition',  # Match key column in the support table
+    how='left'  # Keep all rows from the fact table
+)
+# Step 3: Replace missing values (NaN) in the 'Description' and 'Additional Capex Mapping' columns with "LOE"
+JIB.rename(columns={'Description': 'Capex Project Mapping'}, inplace=True)
+JIB['Capex Project Mapping'] = JIB['Capex Project Mapping'].fillna('LOE')
+JIB['Additional Capex Mapping'] = JIB['Additional Capex Mapping'].fillna('LOE')
+
+# Replace invalid or missing data in WBS Name definition
+JIB.fillna({'WBS Name definition':''}, inplace=True)
+JIB.replace('#NUM!', 'UNKNOWN', inplace=True)
+
+# Step 4: Drop the temporary WBS Extract column (optional) if it's no longer needed
+JIB.drop(columns=['WBS Def Classification'], inplace=True)
+
+# Step 5: The fact table now includes the revised dataset with the required attributes
+JIB = JIB
+
+JIB.head()
