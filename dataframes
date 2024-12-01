@@ -1,4 +1,4 @@
-revenues=xl("Revenues[#All]", headers=True)
+revenues=(df_revenues, headers=True)
 JIB=xl("JIB[#All]", headers=True)
 Relative_NRI=xl("VM!AA6")
 WBSMapping=xl("WBSMapping[#All]", headers=True)
