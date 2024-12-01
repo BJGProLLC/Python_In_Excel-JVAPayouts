@@ -1,0 +1,3 @@
+#Calculating YrMth column based on Posting Date field
+JIB['YrMth'] = JIB['Posting Date'].dt.strftime('%Y-%m')
+JIB.head()
