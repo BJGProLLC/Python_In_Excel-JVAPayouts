@@ -1,0 +1,4 @@
+#calculating Operator's Gross Revenue
+revenues['RevenueAmount'] = revenues['8/8 Gross']*revenues['Relative_NRI']
+
+revenues.head()
