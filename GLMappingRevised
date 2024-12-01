@@ -1,0 +1,17 @@
+# Perform the merge using both Class and Additional Capex Mapping as keys
+JIB= pd.merge(
+    JIB, 
+    GLMappingRevised[['CAPEX GL Mapping', 'Additional Capex Mapping','Revised GLMapping']],  # Include only relevant columns
+    left_on=['Class', 'Additional Capex Mapping'],  # Keys from fact table
+    right_on=['CAPEX GL Mapping', 'Additional Capex Mapping'],  # Keys from support table
+    how='left'  # Keep all rows from the fact table
+)
+
+# Drop unnecessary columns from the merge (like CAPEX GL Mapping)
+JIB.drop(columns=['CAPEX GL Mapping'], inplace=True)
+
+# Replace NaN in the newly added Revised GLMapping column with a default value, if needed (e.g., 'Unmapped')
+JIB['Revised GLMapping'] = JIB['Revised GLMapping'].fillna('Unmapped')
+
+# Display the updated fact table with the new column
+JIB.head(12000)
