@@ -1,0 +1,3 @@
+#Calculating YrMth 
+revenues['YrMth'] = revenues['Sales Date'].dt.strftime('%Y-%m')
+revenues.head()
