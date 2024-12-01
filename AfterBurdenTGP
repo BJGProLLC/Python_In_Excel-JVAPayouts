@@ -1,0 +1,3 @@
+#calculating After Burden TGP (taxes)
+revenues['AfterBurdenTGP'] = revenues['8/8 Mkt']
+revenues.head()
