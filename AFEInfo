@@ -1,0 +1,13 @@
+# Perform the merge using the 'WBS Element' column as the key
+JIB= pd.merge(
+    JIB,
+    AFEInfo[['WBS Element', 'Consent', 'AFE']],  # Include only the 'Consent' column from AFEInfo
+    on='WBS Element',  # Match 'WBS Element' column
+    how='left'  # Keep all rows from the fact table
+)
+
+# Replace NaN values in the 'Consent' column with 'No'
+JIB['Consent'] = JIB['Consent'].fillna('No')
+JIB['AFE'] = JIB['AFE'].fillna('LOE')
+# Display the updated fact table
+JIB.head()
