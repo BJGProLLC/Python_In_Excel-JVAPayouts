@@ -1,0 +1,13 @@
+# Group the revenues dataset by 'JointVenture', 'Venture Name', and 'YrMth'
+grouped_revenues = revenues.groupby(['JointVenture', 'Venture Name', 'YrMth']).agg({
+    '8/8 Gross': 'sum',
+    '8/8 Tax': 'sum',
+    '8/8 Mkt': 'sum',
+    'RevenueAmount': 'sum',
+    'AfterBurdenTaxes': 'sum',
+    'AfterBurdenTGP': 'sum',
+    'NetRevenue': 'sum'
+}).reset_index()  # Reset index to turn the grouped columns into regular columns
+
+# Display the grouped and aggregated dataset
+grouped_revenues.head()
