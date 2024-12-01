@@ -1,0 +1,4 @@
+#Create Class Mapping using GL mapping vm dataset support table
+ClassMapping = dict(zip(GLMapping['GL #'], GLMapping['Class']))
+JIB['Class'] = JIB['Account Number'].map(ClassMapping)
+JIB.head()
