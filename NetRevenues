@@ -1,0 +1,3 @@
+#Calculating Net Revenues
+revenues['NetRevenue'] = revenues['RevenueAmount'] - revenues['AfterBurdenTaxes']-revenues['AfterBurdenTGP']
+revenues.head()
