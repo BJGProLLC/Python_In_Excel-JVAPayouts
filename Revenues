@@ -1,0 +1,3 @@
+#Complete revised Revenues dataset fact table after completed value mapping and calculations.  
+revenues['JointVenture']=revenues['Venture']
+revenues.head()
