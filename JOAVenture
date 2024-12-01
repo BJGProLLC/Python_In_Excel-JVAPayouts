@@ -1,0 +1,17 @@
+# Perform the merge using both JOA and Venture as keys
+JIB= pd.merge(
+    JIB,
+    JOAVenture[['JOA', 'Venture name']],  # Include relevant columns from JOAVenture
+    left_on='Joint Oper. Agreem.',  # Match on JOA and Venture columns
+    right_on='JOA', #match 'JOA' in JOAVenture
+    how='left'  # Keep all rows from the fact table
+)
+
+# Replace NaN values in the newly added columns with default values, if needed
+JIB['Venture name'] = JIB['Venture name'].fillna('Unknown Venture Name')
+
+# Drop the redundant 'JOA' column introduced by the merge (if not needed)
+JIB.drop(columns=['JOA'], inplace=True, errors='ignore')
+
+# Display the updated fact table
+JIB.head()
