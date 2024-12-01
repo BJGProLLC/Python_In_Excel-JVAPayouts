@@ -1,0 +1,4 @@
+#Calculting Relative NRI for revenues table
+revenues['Relative_NRI'] = Relative_NRI
+
+revenues.head()
