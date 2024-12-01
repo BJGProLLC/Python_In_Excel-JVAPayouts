@@ -1,0 +1,21 @@
+# Perform the merge using Revised GLMapping from fact table and Class from PenaltyMapping
+JIB= pd.merge(
+    JIB,
+    PenaltyMapping[['Class', 'Description', 'Penalty %']],  # Include relevant columns from PenaltyMapping
+    left_on='Revised GLMapping',  # Match Revised GLMapping from the fact table
+    right_on='Class',  # Match Class from the PenaltyMapping support table
+    how='left'  # Keep all rows from the fact table
+)
+
+# Rename the Description column to Penalty Description
+JIB.rename(columns={'Description': 'Penalty Description'}, inplace=True)
+
+# Drop the extra Class column introduced by the merge, if needed
+JIB.drop(columns=['Class_y'], inplace=True, errors='ignore')
+
+# Replace NaN in the Penalty Description and Penalty % columns with default values, if needed
+JIB['Penalty Description'] = JIB['Penalty Description'].fillna('No Penalty')
+JIB['Penalty %'] = JIB['Penalty %'].fillna(0)
+
+# Display the updated fact table
+JIB.head(12000)
