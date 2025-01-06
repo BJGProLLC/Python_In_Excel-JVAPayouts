@@ -1,0 +1,9 @@
+# Ensure 'Local amount 1' and 'Penalty %' are numeric (convert if necessary)
+JIB['Local amount 1'] = pd.to_numeric(JIB['Local amount 1'], errors='coerce')
+JIB['Penalty %'] = pd.to_numeric(JIB['Penalty %'], errors='coerce')
+
+# Calculate the 'Penalty Amts' column as the product of 'Local amount 1' and 'Penalty %'
+JIB['Penalty Amts'] = JIB['Local amount 1'] * JIB['Penalty %']
+
+# Display the updated fact table with the new column
+JIB.head()
