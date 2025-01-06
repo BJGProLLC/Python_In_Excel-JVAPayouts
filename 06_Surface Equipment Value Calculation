@@ -1,0 +1,12 @@
+# Ensure the required columns are numeric and properly formatted
+JIB['Local amount 1'] = pd.to_numeric(JIB['Local amount 1'], errors='coerce')
+
+# Create the 'OPEX' column based on the specified conditions
+JIB['SurfaceEquipment'] = np.where(
+    (JIB['Penalty Description'] == 'Surface Equipment') & (JIB['Consent'] == 'No'),
+    JIB['Local amount 1'],  # Include 'Local amount 1' values if conditions are met
+    0  # Otherwise, set to 0
+)
+
+# Display the updated fact table with the new column
+JIB.head()
