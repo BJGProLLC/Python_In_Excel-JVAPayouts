@@ -1,0 +1,12 @@
+# Group the JIB dataset by 'Joint Venture', 'Venture name', and 'YrMth'
+grouped_jib = JIB.groupby(['Joint Venture', 'Venture name', 'YrMth']).agg({
+    'OPEX': 'sum',
+    'Tangible': 'sum',
+    'Intangible': 'sum',
+    'Workover': 'sum',
+    'SurfaceEquipment': 'sum',
+    'Penalty Amts': 'sum'
+}).reset_index()  # Reset index to turn the grouped columns into regular columns
+
+# Display the grouped and aggregated JIB dataset
+grouped_jib.head()
