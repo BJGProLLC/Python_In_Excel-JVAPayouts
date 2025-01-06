@@ -1,0 +1,30 @@
+# Ensure the Payout dataset is sorted by YrMth
+Payout = Payout.sort_values(by='YrMth', ascending=True).reset_index(drop=True)
+
+# Create cumulative balances for Penalty Amts, NetRevenue, and Payout Balance
+Payout['Penalty Amts'] = Payout['Penalty Amts'].cumsum()
+Payout['NetRevenue'] = Payout['NetRevenue'].cumsum()
+Payout['Payout Balance'] = Payout['Payout Balance'].cumsum()
+
+# Rename columns to match the final output structure
+Payout.rename(columns={
+    'Tangible': 'TangibleCosts',
+    'Intangible': 'IntangibleCosts',
+    'Workover': 'WorkoverCosts',
+    'SurfaceEquipment': 'SurfaceEquipmentCosts',
+    'OPEX': 'OPEXCosts',
+    'Penalty Amts': 'PenaltyAmts',
+    '8/8 Gross': 'Gross Revenues',
+    '8/8 Tax': 'Gross Taxes',
+    '8/8 Mkt': 'Gross TGP',
+    'RevenueAmount': 'After Burden Revenues',
+    'AfterBurdenTaxes': 'AfterBurdenTaxes',
+    'AfterBurdenTGP': 'AfterBurdenTGP'
+}, inplace=True)
+
+#re-arrange columns: Venture Name, Joint Venture, YrMth first, followed by the first
+columns_order = ['Venture Name', 'JointVenture', 'YrMth']+[col for col in Payout.columns if col not in ['Venture Name', 'JointVenture', 'YrMth']]
+Payout = Payout[columns_order]
+
+# Display the final dataset
+Payout.head()
